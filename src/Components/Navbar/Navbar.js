@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css'; // Import Navbar.css
 
 
@@ -39,15 +40,15 @@ function Navbar() {
                 </li>
                 {/* List item for the 'Sign Up' link with a button */}
                 <li className="link">
-                    <a href="../Sign_Up//Sign_Up.html">
+                    <Link to="/signup">
                         <button className="btn1">Sign Up</button>
-                    </a>
+                    </Link>
                 </li>
                 {/* List item for the 'Login' link with a button */}
                 <li className="link">
-                    <a href="../Login/Login.html">
+                    <Link to="/login">
                         <button className="btn1">Login</button>
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>
