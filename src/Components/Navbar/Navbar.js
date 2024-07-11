@@ -38,7 +38,9 @@ const Navbar = () => {
         const storedEmail = sessionStorage.getItem("email");
         if (storedEmail) {
             setIsLoggedIn(true);
-            setUsername(storedEmail);
+            setEmail(storedEmail);
+            const name = storedEmail.split('@')[0];
+            setUsername(name);
         }
     }, []);
 
@@ -66,6 +68,9 @@ const Navbar = () => {
                 </li>
                 {isLoggedIn ? (
                     <>
+                        <li className="link">
+                            <span className="username">{"Welcome, " + username}</span>
+                        </li>
                         <li className="link">
                             <button className="btn2" onClick={handleLogout}>Logout</button>
                         </li>
