@@ -16,6 +16,9 @@ import Sign_Up from './Components/Sign_Up/Sign_Up';
 // Import Landing Page component
 import Login from './Components/Login/Login';
 
+// Import Landing Page component
+import InstantConsultation from './Components/InstantConsultationBooking/InstantConsultation';
+
 // Function component for the main App
 function App() {
 
@@ -33,6 +36,7 @@ function App() {
             <Route path="/" element={<Landing_Page/>}/>
             <Route path="/signup" element={<Sign_Up/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/instantconsultation" element={<InstantConsultation />} />
           </Routes>
         </BrowserRouter>
     </div>
