@@ -33,11 +33,13 @@ const FindDoctorSearch = () => {
     }, []);
 
     return (
-        <div className='finddoctor'>
+        <div className='finddoctor' style={{paddingTop:'100px'}}>
             <center>
-                <h1>Find a doctor and Consult instantly</h1>
                 <div>
-                    <i style={{ color: '#000000', fontSize: '20rem' }} className="fa fa-user-md"></i>
+                <h1>Find a Doctor</h1>
+                </div>
+                <div>
+                    <i style={{ color: '#000000', fontSize: '10rem' }} className="fa fa-user-md"></i>
                 </div>
                 <div className="home-search-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <div className="doctor-search-box" ref={searchRef}>
