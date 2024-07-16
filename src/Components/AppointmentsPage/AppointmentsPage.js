@@ -11,7 +11,7 @@ const AppointmentsPage = () => {
       speciality: 'Orthopedic Surgery',
       experience: 32,
       ratings: 4.5,
-      profilePic: '/Assets/User_Todd.jpg'
+      profilePic: '../Assets/Medical_icon.svg'
     },
     {
       id: 2,

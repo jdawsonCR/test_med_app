@@ -27,9 +27,10 @@
     justify-content: center;
     margin-right: 20px;
     margin-left: 20px;
-    background-color: #847DF9;  /* Purple background for the image part */
-    border: 4px solid #333;  /* Thicker border with 4px width */
+    background-color: #fff;  /* Purple background for the image part */
+    border: 2px solid #333;  /* Thicker border with 4px width */
   }
+
 
 /* Container for the details */
 .doctor-card-details {
