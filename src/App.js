@@ -19,8 +19,8 @@ import Login from './Components/Login/Login';
 // Import Landing Page component
 import InstantConsultation from './Components/InstantConsultationBooking/InstantConsultation';
 
-// Import custom Navbar component
-import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
+// Import Find Doctor component
+import AppointmentsPage from './Components/AppointmentsPage/AppointmentsPage';
 
 // Function component for the main App
 function App() {
@@ -40,7 +40,7 @@ function App() {
             <Route path="/signup" element={<Sign_Up/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/instantconsultation" element={<InstantConsultation />} />
-            <Route path="/searchdoctors" element={<FindDoctorSearch />} />
+            <Route path="/searchdoctors" element={<AppointmentsPage />} />
           </Routes>
         </BrowserRouter>
     </div>
