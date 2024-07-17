@@ -7,6 +7,7 @@ import Login from './Components/Login/Login';
 import InstantConsultation from './Components/InstantConsultationBooking/InstantConsultation';
 import AppointmentsPage from './Components/AppointmentsPage/AppointmentsPage';
 import Notification from './Components/Notification/Notification';
+import ReviewForm from './Components/ReviewForm/ReviewForm'; // Import ReviewForm component
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/instantconsultation" element={<InstantConsultation />} />
           <Route path="/searchdoctors" element={<AppointmentsPage />} />
+          {/* Add a route for ReviewForm */}
+          <Route path="/reviews" element={<ReviewForm />} />
           {/* Ensure the Notification component is correctly placed */}
           <Route path="/notification" element={<Notification />}>
             <Route path="login" element={<Login />} />
