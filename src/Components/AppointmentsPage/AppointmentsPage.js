@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FindDoctorSearch from '../FindDoctorSearch/FindDoctorSearch';
 import DoctorCard from '../DoctorCard/DoctorCard';
+import AppointmentsForm from '../AppointmentsForm/AppointmentsForm';
 import './AppointmentsPage.css';
 
 const AppointmentsPage = () => {
@@ -22,28 +23,37 @@ const AppointmentsPage = () => {
       profilePic: '/Assets/User_Fatima.jpg'
     },
     {
-        id: 3,
-        name: 'Dr. Malia Kekoa',
-        speciality: 'Orthopedic Surgery',
-        experience: 8,
-        ratings: 4.9,
-        profilePic: '/Assets/User_Malia.jpg'
-      },
-      {
-        id: 4,
-        name: 'Dr. David Jones',
-        speciality: 'Orthopedic Surgery',
-        experience: 18,
-        ratings: 2.3,
-        profilePic: '/Assets/User_Scott.png'
-      }
+      id: 3,
+      name: 'Dr. Malia Kekoa',
+      speciality: 'Orthopedic Surgery',
+      experience: 8,
+      ratings: 4.9,
+      profilePic: '/Assets/User_Malia.jpg'
+    },
+    {
+      id: 4,
+      name: 'Dr. David Jones',
+      speciality: 'Orthopedic Surgery',
+      experience: 18,
+      ratings: 2.3,
+      profilePic: '/Assets/User_Scott.png'
+    }
     // Add more doctor objects as needed
   ]);
+
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+
+  const handleDoctorSelect = (doctor) => {
+    setSelectedDoctor(doctor);
+  };
+
+  const handleCloseForm = () => {
+    setSelectedDoctor(null);
+  };
 
   return (
     <div className="appointments-page">
       <FindDoctorSearch />
-      <center>
       <div className="doctor-cards-container" style={{ paddingTop: '20px' }}>
         {doctors.map((doctor) => (
           <DoctorCard
@@ -53,10 +63,20 @@ const AppointmentsPage = () => {
             experience={doctor.experience}
             ratings={doctor.ratings}
             profilePic={doctor.profilePic}
+            onSelect={() => handleDoctorSelect(doctor)} // Pass onSelect callback
           />
         ))}
+        {selectedDoctor && (
+          <div className="modal-backdrop">
+            <div className="modal-content">
+              <AppointmentsForm
+                doctor={selectedDoctor}
+                onClose={handleCloseForm}
+              />
+            </div>
+          </div>
+        )}
       </div>
-      </center>
     </div>
   );
 };
