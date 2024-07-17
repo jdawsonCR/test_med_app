@@ -17,20 +17,28 @@ const AppointmentsForm = ({ doctor, onClose }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Logic to handle form submission (e.g., API call)
-    console.log('Form data:', formData);
-    // Reset form fields after submission if needed
-    setFormData({
-      userName: '',
-      phoneNumber: '',
-      appointmentDate: '',
-      timeSlot: ''
-    });
-    // Close the form after submission
-    onClose();
+const handleSubmit = (e) => {
+  e.preventDefault();
+  // Logic to handle form submission (e.g., API call)
+  
+  // Store appointment data in localStorage
+  const appointmentData = {
+    userName: formData.userName,
+    appointmentDate: formData.appointmentDate,
+    timeSlot: formData.timeSlot
   };
+  localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
+
+  // Reset form fields after submission if needed
+  setFormData({
+    userName: '',
+    phoneNumber: '',
+    appointmentDate: '',
+    timeSlot: ''
+  });
+  // Close the form after submission
+  onClose();
+};
 
   return (
     <div className="appointments-form-modal">
