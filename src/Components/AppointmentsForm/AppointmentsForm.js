@@ -23,9 +23,12 @@ const handleSubmit = (e) => {
   
   // Store appointment data in localStorage
   const appointmentData = {
-    userName: formData.userName,
-    appointmentDate: formData.appointmentDate,
-    timeSlot: formData.timeSlot
+      doctorName: doctor.name,
+      doctorSpeciality: doctor.speciality,
+      userName: formData.userName,
+      phoneNumber: formData.phoneNumber,
+      appointmentDate: formData.appointmentDate,
+      timeSlot: formData.timeSlot
   };
   localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
 
