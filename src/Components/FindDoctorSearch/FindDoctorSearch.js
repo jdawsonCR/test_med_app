@@ -1,31 +1,33 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './FindDoctorSearch.css';
-import { useNavigate } from 'react-router-dom';
 
 const initSpeciality = [
-    'Dentist', 'Gynecologist/obstetrician', 'General Physician', 'Dermatologist', 'Ear-nose-throat (ent) Specialist', 'Homeopath', 'Ayurveda'
-]
+    'Dentist', 'Gynecologist/obstetrician', 'General Physician', 'Dermatologist', 'Ear-nose-throat (ent) Specialist', 'Homeopath', 'Ayurveda', 'Orthopedic Surgery'
+];
 
-const FindDoctorSearch = () => {
+const FindDoctorSearch = ({ onSpecialitySelect, initialDoctors }) => {
     const [doctorResultHidden, setDoctorResultHidden] = useState(true);
     const [searchDoctor, setSearchDoctor] = useState('');
     const [specialities, setSpecialities] = useState(initSpeciality);
-    const navigate = useNavigate();
     const searchRef = useRef(null);
 
     const handleDoctorSelect = (speciality) => {
         setSearchDoctor(speciality);
         setDoctorResultHidden(true);
-        navigate(`/instant-consultation?speciality=${speciality}`);
-        window.location.reload();
-    }
+        // Pass selected speciality to parent component (AppointmentsPage)
+        onSpecialitySelect(speciality);
+    };
+
+    const handleClickOutside = (event) => {
+        if (searchRef.current && !searchRef.current.contains(event.target)) {
+            setSearchDoctor('');
+            setDoctorResultHidden(true);
+            // Reset to initial doctors list
+            onSpecialitySelect('');
+        }
+    };
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (searchRef.current && !searchRef.current.contains(event.target)) {
-                setDoctorResultHidden(true);
-            }
-        };
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -36,7 +38,7 @@ const FindDoctorSearch = () => {
         <div className='finddoctor' style={{paddingTop:'100px'}}>
             <center>
                 <div>
-                <h1>Find a Doctor</h1>
+                    <h1>Find a Doctor</h1>
                 </div>
                 <div>
                     <i style={{ color: '#000000', fontSize: '10rem' }} className="fa fa-user-md"></i>
