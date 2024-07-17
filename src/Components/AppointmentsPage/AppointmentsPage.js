@@ -42,6 +42,7 @@ const AppointmentsPage = () => {
   ]);
 
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [appointmentInfo, setAppointmentInfo] = useState(null);
 
   const handleDoctorSelect = (doctor) => {
     setSelectedDoctor(doctor);
@@ -49,6 +50,10 @@ const AppointmentsPage = () => {
 
   const handleCloseForm = () => {
     setSelectedDoctor(null);
+  };
+
+  const handleBookAppointment = (formData) => {
+    setAppointmentInfo(formData);
   };
 
   return (
@@ -64,6 +69,7 @@ const AppointmentsPage = () => {
             ratings={doctor.ratings}
             profilePic={doctor.profilePic}
             onSelect={() => handleDoctorSelect(doctor)} // Pass onSelect callback
+            appointmentInfo={appointmentInfo} // Pass appointmentInfo state
           />
         ))}
         {selectedDoctor && (
@@ -72,6 +78,7 @@ const AppointmentsPage = () => {
               <AppointmentsForm
                 doctor={selectedDoctor}
                 onClose={handleCloseForm}
+                onBookAppointment={handleBookAppointment} // Pass callback to handle appointment booking
               />
             </div>
           </div>
