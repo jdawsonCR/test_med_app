@@ -14,21 +14,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
+        <Notification>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/instantconsultation" element={<InstantConsultation />} />
           <Route path="/searchdoctors" element={<AppointmentsPage />} />
-          {/* Add a route for ReviewForm */}
           <Route path="/reviews" element={<ReviewForm />} />
-          {/* Ensure the Notification component is correctly placed */}
-          <Route path="/notification" element={<Notification />}>
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="instant-consultation" element={<InstantConsultation />} />
-          </Route>
         </Routes>
+        </Notification>
       </BrowserRouter>
     </div>
   );
