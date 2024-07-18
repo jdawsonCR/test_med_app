@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AppointmentsForm.css'; // Import CSS file for styling
 
-const AppointmentsForm = ({ doctor, onClose }) => {
+const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
   const [formData, setFormData] = useState({
     userName: '',
     phoneNumber: '',
@@ -17,31 +17,34 @@ const AppointmentsForm = ({ doctor, onClose }) => {
     });
   };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  // Logic to handle form submission (e.g., API call)
-  
-  // Store appointment data in localStorage
-  const appointmentData = {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Logic to handle form submission (e.g., API call)
+    
+    // Pass appointment data back to parent component (DoctorCard)
+    onBookNow(formData.appointmentDate, formData.timeSlot);
+
+    // Store appointment data in localStorage
+    const appointmentData = {
       doctorName: doctor.name,
       doctorSpeciality: doctor.speciality,
       userName: formData.userName,
       phoneNumber: formData.phoneNumber,
       appointmentDate: formData.appointmentDate,
       timeSlot: formData.timeSlot
-  };
-  localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
+    };
+    localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
 
-  // Reset form fields after submission if needed
-  setFormData({
-    userName: '',
-    phoneNumber: '',
-    appointmentDate: '',
-    timeSlot: ''
-  });
-  // Close the form after submission
-  onClose();
-};
+    // Reset form fields after submission if needed
+    setFormData({
+      userName: '',
+      phoneNumber: '',
+      appointmentDate: '',
+      timeSlot: ''
+    });
+    // Close the form after submission
+    onClose();
+  };
 
   return (
     <div className="appointments-form-modal">
