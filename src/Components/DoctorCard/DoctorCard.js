@@ -9,29 +9,31 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
   const [showAppointmentsForm, setShowAppointmentsForm] = useState(false);
 
   const handleBookNow = (appointmentDate, timeSlot) => {
-    setIsAppointmentBooked(true);
-    // Create new appointment using passed parameters
-    const newAppointment = {
-      id: appointments.length + 1, // Replace with actual ID logic
-      appointmentDate: appointmentDate,
-      timeSlot: timeSlot
-    };
-    setAppointments([...appointments, newAppointment]);
-    setShowAppointmentsForm(false); // Close the form after booking
+  setIsAppointmentBooked(true);
+  // Create new appointment using passed parameters
+  const newAppointment = {
+    id: appointments.length + 1,
+    name: 'John Doe', // Replace with actual user data
+    phoneNumber: '123-456-7890', // Replace with actual user data
+    appointmentDate: appointmentDate,
+    timeSlot: timeSlot
   };
+  setAppointments([...appointments, newAppointment]);
+  setShowAppointmentsForm(false); // Close the form after booking
+};
 
-  const handleCancelAppointment = (id) => {
-    const updatedAppointments = appointments.filter(appointment => appointment.id !== id);
-    setAppointments(updatedAppointments);
-    // Reset isAppointmentBooked if no more appointments
-    if (updatedAppointments.length === 0) {
-      setIsAppointmentBooked(false);
-    }
-  };
+const handleCancelAppointment = (id) => {
+  const updatedAppointments = appointments.filter(appointment => appointment.id !== id);
+  setAppointments(updatedAppointments);
+  // Reset isAppointmentBooked if no more appointments
+  if (updatedAppointments.length === 0) {
+    setIsAppointmentBooked(false);
+  }
+};
 
-  const openAppointmentsForm = () => {
-    setShowAppointmentsForm(true); // Open the appointments form
-  };
+const openAppointmentsForm = () => {
+  setShowAppointmentsForm(true); // Open the appointments form
+};
 
   return (
     <div className="doctor-card-container">

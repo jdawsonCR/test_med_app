@@ -9,19 +9,19 @@ const Notification = ({ children }) => {
   useEffect(() => {
     const storedUsername = sessionStorage.getItem('name');
     const storedDoctorData = JSON.parse(localStorage.getItem('doctorData'));
-    const storedAppointmentData = JSON.parse(localStorage.getItem(storedDoctorData?.name));
-
+    const storedAppointmentData = JSON.parse(localStorage.getItem('appointmentData'));
+  
     if (storedUsername) {
       setIsLoggedIn(true);
       setUsername(storedUsername);
     }
-
+  
     if (storedDoctorData) {
       setDoctorData(storedDoctorData);
     }
-
+  
     if (storedAppointmentData) {
-      setAppointmentData(storedAppointmentData);
+      setAppointmentData([storedAppointmentData]); // Assuming appointmentData is an array
     }
   }, []);
 
