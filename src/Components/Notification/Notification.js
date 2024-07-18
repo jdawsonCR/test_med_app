@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../Navbar/Navbar';
-import './Notification.css'; // Ensure the correct path to your CSS file
 
 const Notification = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -9,9 +7,9 @@ const Notification = ({ children }) => {
   const [appointmentData, setAppointmentData] = useState(null);
 
   useEffect(() => {
-    const storedUsername = sessionStorage.getItem('email');
+    const storedUsername = sessionStorage.getItem('name');
     const storedDoctorData = JSON.parse(localStorage.getItem('doctorData'));
-    const storedAppointmentData = JSON.parse(localStorage.getItem('appointmentData'));
+    const storedAppointmentData = JSON.parse(localStorage.getItem(storedDoctorData?.name));
 
     if (storedUsername) {
       setIsLoggedIn(true);
@@ -28,33 +26,43 @@ const Notification = ({ children }) => {
   }, []);
 
   return (
-    <div className="notification-container">
-      <Navbar />
+    <div>
+     
       {children}
-      {isLoggedIn && appointmentData && (
-        <div className="notification-box">
+      {/* {isLoggedIn && appointmentData && ( */}
+      {appointmentData && (
+
+        <>
           <div className="appointment-card">
             <div className="appointment-card__content">
               <h3 className="appointment-card__title">Appointment Details</h3>
               <p className="appointment-card__message">
-                <strong>Doctor:</strong> {appointmentData.doctorName}
+                <strong>Doctor:</strong> {doctorData?.name}
               </p>
               <p className="appointment-card__message">
-                <strong>Doctor:</strong> {appointmentData.doctorSpeciality}
+                <strong>Speciality:</strong> {doctorData?.speciality}
               </p>
-              <p className="appointment-card__message">
-                <strong>User:</strong> {appointmentData.userName}
-              </p>
-              <p className="appointment-card__message">
-                <strong>Date:</strong> {appointmentData.appointmentDate}
-              </p>
-              <p className="appointment-card__message">
-                <strong>Time:</strong> {appointmentData.timeSlot}
-              </p>
+              {appointmentData.map(appointment => (
+                <div key={appointment.id}>
+                  <p className="appointment-card__message">
+                    <strong>Name:</strong> {appointment.name}
+                  </p>
+                  <p className="appointment-card__message">
+                    <strong>Phone Number:</strong> {appointment.phoneNumber}
+                  </p>
+                  <p className="appointment-card__message">
+                    <strong>Date of Appointment:</strong> {appointment.date}
+                  </p>
+                  <p className="appointment-card__message">
+                    <strong>Time Slot:</strong> {appointment.time}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        </>
       )}
+      
     </div>
   );
 };
