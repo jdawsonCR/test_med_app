@@ -8,13 +8,13 @@ import InstantConsultation from './Components/InstantConsultationBooking/Instant
 import AppointmentsPage from './Components/AppointmentsPage/AppointmentsPage';
 import Notification from './Components/Notification/Notification';
 import ReviewForm from './Components/ReviewForm/ReviewForm'; // Import ReviewForm component
+import ProfileCard from './Components/ProfileCard/ProfileCard'; // Import ReviewForm component
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <Notification>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignUp />} />
@@ -23,8 +23,8 @@ function App() {
           <Route path="/searchdoctors" element={<AppointmentsPage />} />
           <Route path="/reviews" element={<ReviewForm />} />
           <Route path="/notification" element={<Notification />} />
+          <Route path="/profilecard" element={<ProfileCard />} />
         </Routes>
-        </Notification>
       </BrowserRouter>
     </div>
   );

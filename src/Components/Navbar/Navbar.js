@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import ProfileCard from "../ProfileCard/ProfileCard"; // Import ProfileCard
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [showProfileCard, setShowProfileCard] = useState(false); // State for ProfileCard visibility
     const navigate = useNavigate();
 
     const handleClick = () => setClick(!click);
@@ -30,11 +31,11 @@ const Navbar = () => {
         window.location.reload();
     }
 
-    const handleDropdown = () => {
-        setShowDropdown(!showDropdown);
+    const handleProfileIconClick = () => {
+        setShowProfileCard(!showProfileCard);
     }
 
-    useEffect(() => { 
+    useEffect(() => {
         const storedEmail = sessionStorage.getItem("email");
         if (storedEmail) {
             setIsLoggedIn(true);
@@ -71,7 +72,10 @@ const Navbar = () => {
                 </li>
                 {isLoggedIn ? (
                     <>
-                        <li className="link">
+                        <li className="link" onClick={handleProfileIconClick}>
+                            <i className="fa fa-user-circle"></i>
+                        </li>
+                        <li className="link"onClick={handleProfileIconClick}>
                             <span className="username">{"Welcome, " + username}</span>
                         </li>
                         <li className="link">
@@ -93,6 +97,13 @@ const Navbar = () => {
                     </>
                 )}
             </ul>
+            {showProfileCard && (
+                <ProfileCard
+                    username={username}
+                    email={email}
+                    onClose={() => setShowProfileCard(false)}
+                />
+            )}
         </nav>
     );
 };
