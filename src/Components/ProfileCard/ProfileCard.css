@@ -1,19 +1,30 @@
 /* src/Components/ProfileCard/ProfileCard.css */
 
-/* Styles for the profile card popup */
 .profile-popup {
-    position: absolute; /* Position relative to the nearest positioned ancestor */
-    top: 100%; /* Position below the profile icon */
-    left: 0; /* Align to the left of the profile icon */
-    max-width: 400px; /* Set the maximum width */
-    margin-top: 10px; /* Space between the profile icon and the popup */
-    background-color: #f5f5f5; /* Background color of the popup */
-    border-radius: 4px; /* Round the corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-    z-index: 1000; /* Ensure it appears above other content */
-    display: none; /* Initially hidden */
+  /* Your existing styles for the popup */
 }
 
-.profile-popup.show {
-    display: block; /* Display when the show class is applied */
+.profile-navigation {
+  /* Add styles for positioning or spacing if needed */
+}
+
+.profile-link {
+  color: #2190FF; /* Link color */
+  text-decoration: none; /* Remove underline */
+  font-size: 16px; /* Adjust font size */
+  margin: 10px 0; /* Adjust spacing between links */
+  display: block; /* Ensure each link is on a new line */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.profile-link:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+.profile-section {
+  /* Your existing styles for the profile section */
+}
+
+.profile-details {
+  /* Your existing styles for the profile details */
 }

@@ -1,8 +1,3 @@
-/** 
- * Following code has been commented with appropriate comments for your reference.
- * Styling for the Header Navbar
- */
-
 /* Styling for the main navigation bar */
 nav {
     padding: 1.5rem;
@@ -182,3 +177,56 @@ nav {
     color:white; /* Hover effect */
 }
   
+.profile-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-right: 10px;
+}
+
+/* Styling for the profile welcome message */
+.profile-welcome {
+    cursor: pointer;
+    margin-right: 1rem; /* Add some space between the welcome message and the logout button */
+    padding-right: 10px;
+}
+
+/* Ensure the logout button aligns well with the welcome message */
+.btn2 {
+    border: 2px solid #3685fb;
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+    height: 30px;
+    display: flex; /* Align items and justify content */
+    align-items: center; /* Align items and justify content */
+    justify-content: center; /* Align items and justify content */
+    margin-top: 0; /* Remove margin-top as it's not needed */
+    padding: 0 1rem; /* Add some padding for better appearance */
+}
+
+/* Ensure the profile popup is aligned correctly */
+.profile-popup {
+    position: absolute;
+    top: 100%; /* Position below the profile-container */
+    right: 0; /* Align to the right side of the profile container */
+    width: 250px; /* Adjust width as needed */
+    z-index: 1000; /* Ensure it appears above other elements */
+    background-color: #fff; /* Ensure background is white */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+    border-radius: 4px; /* Rounded corners */
+}
+
+/* Styling for the profile popup and its links */
+.profile-popup .profile-navigation a {
+    color: #2190FF; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Adjust font size */
+    margin: 10px 0; /* Adjust spacing between links */
+    display: block; /* Ensure each link is on a new line */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.profile-popup .profile-navigation a:hover {
+    text-decoration: underline; /* Optional: Add underline on hover */
+}

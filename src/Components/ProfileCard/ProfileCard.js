@@ -1,16 +1,18 @@
 // src/Components/ProfileCard/ProfileCard.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { API_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
-import ReportsLayout from "../ReportsLayout/ReportsLayout"; // Import ReportsLayout
+import ReportsLayout from "../ReportsLayout/ReportsLayout";
+import './ProfileCard.css';
 
-const ProfileCard = () => {
+const ProfileCard = ({ isOpen, onClose }) => {
   const [userDetails, setUserDetails] = useState({});
   const [updatedDetails, setUpdatedDetails] = useState({});
   const [editMode, setEditMode] = useState(false);
-  const [view, setView] = useState(""); // State for managing view, initially empty
+  const [view, setView] = useState("");
 
   const navigate = useNavigate();
+  const popupRef = useRef(null);
 
   useEffect(() => {
     const authtoken = sessionStorage.getItem("auth-token");
@@ -20,6 +22,16 @@ const ProfileCard = () => {
       fetchUserProfile();
     }
   }, [navigate]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [onClose]);
 
   const fetchUserProfile = async () => {
     try {
@@ -96,15 +108,15 @@ const ProfileCard = () => {
     setView(view);
   };
 
+  if (!isOpen) return null; // Do not render if not open
+
   return (
-    <div className="profile-container">
-      {/* Navigation Links */}
+    <div ref={popupRef} className="profile-popup">
       <div className="profile-navigation">
-        <button onClick={() => handleViewChange("profile")}>Your Profile</button>
-        <button onClick={() => handleViewChange("reports")}>Your Reports</button>
+        <a href="#profile" onClick={() => handleViewChange("profile")} className="profile-link">Your Profile</a>
+        <a href="#reports" onClick={() => handleViewChange("reports")} className="profile-link">Your Reports</a>
       </div>
       
-      {/* Conditional Rendering based on the current view */}
       {view === "profile" && (
         <div className="profile-section">
           {editMode ? (
@@ -115,7 +127,7 @@ const ProfileCard = () => {
                   type="email"
                   name="email"
                   value={userDetails.email}
-                  disabled // Disable the email field
+                  disabled
                 />
               </label>
               <label>

@@ -1,3 +1,4 @@
+// src/Components/Navbar/Navbar.js
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
@@ -71,17 +72,23 @@ const Navbar = () => {
                     <Link to="/instantconsultation">Instant Consultation</Link>
                 </li>
                 {isLoggedIn ? (
-                    <>
+                    <div className="profile-container">
                         <li className="link" onClick={handleProfileIconClick}>
                             <i className="fa fa-user-circle"></i>
                         </li>
-                        <li className="link"onClick={handleProfileIconClick}>
+                        <li className="link" onClick={handleProfileIconClick}>
                             <span className="username">{"Welcome, " + username}</span>
                         </li>
                         <li className="link">
                             <button className="btn2" onClick={handleLogout}>Logout</button>
                         </li>
-                    </>
+                        {showProfileCard && (
+                            <ProfileCard
+                                isOpen={showProfileCard}
+                                onClose={() => setShowProfileCard(false)}
+                            />
+                        )}
+                    </div>
                 ) : (
                     <>
                         <li className="link">
@@ -97,13 +104,6 @@ const Navbar = () => {
                     </>
                 )}
             </ul>
-            {showProfileCard && (
-                <ProfileCard
-                    username={username}
-                    email={email}
-                    onClose={() => setShowProfileCard(false)}
-                />
-            )}
         </nav>
     );
 };
