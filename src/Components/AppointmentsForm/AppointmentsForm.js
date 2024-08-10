@@ -3,10 +3,10 @@ import './AppointmentsForm.css'; // Import CSS file for styling
 
 const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
   const [formData, setFormData] = useState({
-    userName: '',
-    phoneNumber: '',
-    appointmentDate: '',
-    timeSlot: ''
+    userNameAppt: '',
+    phoneNumberAppt: '',
+    appointmentDateAppt: '',
+    timeSlotAppt: ''
   });
 
   const handleInputChange = (e) => {
@@ -17,34 +17,35 @@ const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Logic to handle form submission (e.g., API call)
-    
-    // Pass appointment data back to parent component (DoctorCard)
-    onBookNow(formData.appointmentDate, formData.timeSlot);
+ const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  // Pass appointment data back to parent component (DoctorCard)
+  onBookNow(formData);
 
-    // Store appointment data in localStorage
-    const appointmentData = {
-      doctorName: doctor.name,
-      doctorSpeciality: doctor.speciality,
-      userName: formData.userName,
-      phoneNumber: formData.phoneNumber,
-      appointmentDate: formData.appointmentDate,
-      timeSlot: formData.timeSlot
-    };
-    localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
-
-    // Reset form fields after submission if needed
-    setFormData({
-      userName: '',
-      phoneNumber: '',
-      appointmentDate: '',
-      timeSlot: ''
-    });
-    // Close the form after submission
-    onClose();
+  // Store appointment data in localStorage
+  const appointmentData = {
+    doctorNameAppt: doctor.name,
+    doctorSpecialityAppt: doctor.speciality,
+    userNameAppt: formData.userNameAppt, // Fixed the key name to match state
+    phoneNumberAppt: formData.phoneNumberAppt, // Fixed the key name to match state
+    appointmentDateAppt: formData.appointmentDateAppt, // Fixed the key name to match state
+    timeSlotAppt: formData.timeSlotAppt // Fixed the key name to match state
   };
+
+  localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
+
+  // Reset form fields after submission if needed
+  setFormData({
+    userNameAppt: '',
+    phoneNumberAppt: '',
+    appointmentDateAppt: '',
+    timeSlotAppt: ''
+  });
+
+  // Close the form after submission
+  onClose();
+};
 
   return (
     <div className="appointments-form-modal">
@@ -56,43 +57,43 @@ const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="userName" style={{ marginTop: '30px' }}>Your Name:</label>
+          <label htmlFor="userNameAppt" style={{ marginTop: '30px' }}>Your Name:</label>
           <input
             type="text"
-            id="userName"
-            name="userName"
+            id="userNameAppt"
+            name="userNameAppt"
             value={formData.userName}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="phoneNumber">Phone Number:</label>
+          <label htmlFor="phoneNumberAppt">Phone Number:</label>
           <input
             type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
+            id="phoneNumberAppt"
+            name="phoneNumberAppt"
             value={formData.phoneNumber}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="appointmentDate">Select Date:</label>
+          <label htmlFor="appointmentDateAppt">Select Date:</label>
           <input
             type="date"
-            id="appointmentDate"
-            name="appointmentDate"
+            id="appointmentDateAppt"
+            name="appointmentDateAppt"
             value={formData.appointmentDate}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="timeSlot">Select Time Slot:</label>
+          <label htmlFor="timeSlotAppt">Select Time Slot:</label>
           <select
-            id="timeSlot"
-            name="timeSlot"
+            id="timeSlotAppt"
+            name="timeSlotAppt"
             value={formData.timeSlot}
             onChange={handleInputChange}
             required
