@@ -7,9 +7,9 @@ import Login from './Components/Login/Login';
 import InstantConsultation from './Components/InstantConsultationBooking/InstantConsultation';
 import AppointmentsPage from './Components/AppointmentsPage/AppointmentsPage';
 import Notification from './Components/Notification/Notification';
-import ReviewForm from './Components/ReviewForm/ReviewForm'; // Import ReviewForm component
-import ProfileCard from './Components/ProfileCard/ProfileCard'; // Import ReviewForm component
-import ReportsLayout from './Components/ReportsLayout/ReportsLayout';
+import ReviewForm from './Components/ReviewForm/ReviewForm';
+import ReportsLayout from './Components/ReportsLayout/ReportsLayout'; // Updated path for ReportsPage
+import ProfileCard from './Components/ProfileCard/ProfileCard';
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
           <Route path="/searchdoctors" element={<AppointmentsPage />} />
           <Route path="/reviews" element={<ReviewForm />} />
           <Route path="/notification" element={<Notification />} />
-          <Route path="/profilecard" element={<ProfileCard />} />
-          <Route path="/ReportsLayout" element={<ReportsLayout />} />
+          <Route path="/reports" element={<ReportsLayout />} />
+          <Route path="/profile" element={<ProfileCard />} /> {/* Ensure this route exists */}
         </Routes>
       </BrowserRouter>
     </div>

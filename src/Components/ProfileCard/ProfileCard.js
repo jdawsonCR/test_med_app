@@ -1,15 +1,14 @@
 // src/Components/ProfileCard/ProfileCard.js
 import React, { useEffect, useState, useRef } from "react";
-import { API_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
-import ReportsLayout from "../ReportsLayout/ReportsLayout";
+import { API_URL } from "../../config";
 import './ProfileCard.css';
 
 const ProfileCard = ({ isOpen, onClose }) => {
   const [userDetails, setUserDetails] = useState({});
   const [updatedDetails, setUpdatedDetails] = useState({});
   const [editMode, setEditMode] = useState(false);
-  const [view, setView] = useState("");
+  const [view, setView] = useState("profile");
 
   const navigate = useNavigate();
   const popupRef = useRef(null);
@@ -105,10 +104,15 @@ const ProfileCard = ({ isOpen, onClose }) => {
   };
 
   const handleViewChange = (view) => {
-    setView(view);
+    if (view === "reports") {
+      navigate("/reports"); // Redirect to ReportsLayout
+      onClose(); // Close the profile card
+    } else {
+      setView(view);
+    }
   };
 
-  if (!isOpen) return null; // Do not render if not open
+  if (!isOpen) return null;
 
   return (
     <div ref={popupRef} className="profile-popup">
@@ -160,7 +164,6 @@ const ProfileCard = ({ isOpen, onClose }) => {
           )}
         </div>
       )}
-      {view === "reports" && <ReportsLayout />}
     </div>
   );
 };

@@ -137,6 +137,7 @@ const AppointmentsPage = () => {
             experience={doctor.experience}
             ratings={doctor.ratings}
             profilePic={doctor.profilePic}
+            report={doctor.report}
             onSelect={() => handleDoctorSelect(doctor)} // Pass onSelect callback
             appointmentInfo={appointmentInfo} // Pass appointmentInfo state
           />
