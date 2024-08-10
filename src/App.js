@@ -22,6 +22,7 @@ function App() {
           <Route path="/instantconsultation" element={<InstantConsultation />} />
           <Route path="/searchdoctors" element={<AppointmentsPage />} />
           <Route path="/reviews" element={<ReviewForm />} />
+          <Route path="/notification" element={<Notification />} />
         </Routes>
         </Notification>
       </BrowserRouter>
