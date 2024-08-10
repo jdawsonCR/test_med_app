@@ -17,35 +17,39 @@ const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
     });
   };
 
- const handleSubmit = (e) => {
-  e.preventDefault();
-  
-  // Pass appointment data back to parent component (DoctorCard)
-  onBookNow(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Pass appointment data back to parent component
+    onBookNow({
+      ...formData,
+      doctorNameAppt: doctor.name,
+      doctorSpecialityAppt: doctor.speciality
+    });
 
-  // Store appointment data in localStorage
-  const appointmentData = {
-    doctorNameAppt: doctor.name,
-    doctorSpecialityAppt: doctor.speciality,
-    userNameAppt: formData.userNameAppt, // Fixed the key name to match state
-    phoneNumberAppt: formData.phoneNumberAppt, // Fixed the key name to match state
-    appointmentDateAppt: formData.appointmentDateAppt, // Fixed the key name to match state
-    timeSlotAppt: formData.timeSlotAppt // Fixed the key name to match state
+    // Store appointment data in localStorage
+    const appointmentData = {
+      doctorNameAppt: doctor.name,
+      doctorSpecialityAppt: doctor.speciality,
+      userNameAppt: formData.userNameAppt,
+      phoneNumberAppt: formData.phoneNumberAppt,
+      appointmentDateAppt: formData.appointmentDateAppt,
+      timeSlotAppt: formData.timeSlotAppt
+    };
+
+    localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
+
+    // Reset form fields after submission if needed
+    setFormData({
+      userNameAppt: '',
+      phoneNumberAppt: '',
+      appointmentDateAppt: '',
+      timeSlotAppt: ''
+    });
+
+    // Close the form after submission
+    onClose();
   };
-
-  localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
-
-  // Reset form fields after submission if needed
-  setFormData({
-    userNameAppt: '',
-    phoneNumberAppt: '',
-    appointmentDateAppt: '',
-    timeSlotAppt: ''
-  });
-
-  // Close the form after submission
-  onClose();
-};
 
   return (
     <div className="appointments-form-modal">
@@ -62,7 +66,7 @@ const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
             type="text"
             id="userNameAppt"
             name="userNameAppt"
-            value={formData.userName}
+            value={formData.userNameAppt}
             onChange={handleInputChange}
             required
           />
@@ -73,7 +77,7 @@ const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
             type="tel"
             id="phoneNumberAppt"
             name="phoneNumberAppt"
-            value={formData.phoneNumber}
+            value={formData.phoneNumberAppt}
             onChange={handleInputChange}
             required
           />
@@ -84,7 +88,7 @@ const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
             type="date"
             id="appointmentDateAppt"
             name="appointmentDateAppt"
-            value={formData.appointmentDate}
+            value={formData.appointmentDateAppt}
             onChange={handleInputChange}
             required
           />
@@ -94,7 +98,7 @@ const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
           <select
             id="timeSlotAppt"
             name="timeSlotAppt"
-            value={formData.timeSlot}
+            value={formData.timeSlotAppt}
             onChange={handleInputChange}
             required
           >
@@ -105,7 +109,7 @@ const AppointmentsForm = ({ doctor, onClose, onBookNow }) => {
           </select>
         </div>
         <button type="submit">Book Appointment</button>
-        <button onClick={onClose} style={{ backgroundColor: 'red'}}>Close</button>
+        <button type="button" onClick={onClose} style={{ backgroundColor: 'red' }}>Close</button>
       </form>
     </div>
   );
