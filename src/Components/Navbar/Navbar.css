@@ -177,6 +177,7 @@ nav {
     color:white; /* Hover effect */
 }
   
+/* Styling for the profile container to display items side-by-side */
 .profile-container {
     display: flex;
     align-items: center;
@@ -188,7 +189,6 @@ nav {
 .profile-welcome {
     cursor: pointer;
     margin-right: 1rem; /* Add some space between the welcome message and the logout button */
-    padding-right: 10px;
 }
 
 /* Ensure the logout button aligns well with the welcome message */
@@ -201,8 +201,13 @@ nav {
     display: flex; /* Align items and justify content */
     align-items: center; /* Align items and justify content */
     justify-content: center; /* Align items and justify content */
-    margin-top: 0; /* Remove margin-top as it's not needed */
     padding: 0 1rem; /* Add some padding for better appearance */
+    margin-left: 1rem; /* Add space between the welcome message and the button */
+}
+
+.btn2:hover {
+    background-color: #3685fb; /* Hover effect */
+    color: white; /* Hover effect */
 }
 
 /* Ensure the profile popup is aligned correctly */

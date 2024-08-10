@@ -4,9 +4,9 @@ import './ReportsLayout.css'; // Import CSS file for styling
 
 const ReportsLayout = () => {
   const [reports, setReports] = useState([
-    { id: 1, doctorName: 'Dr. John Doe', doctorSpeciality: 'Cardiologist', report: '', download: '', reviewGiven: false },
-    { id: 2, doctorName: 'Dr. Jane Smith', doctorSpeciality: 'Dermatologist', report: '', download: '', reviewGiven: false },
-    { id: 3, doctorName: 'Dr. Mike Johnson', doctorSpeciality: 'Pediatrician', report: '', download: '', reviewGiven: false }
+    { id: 1, doctorName: 'Dr. John Doe', doctorSpeciality: 'Cardiologist', report: 'report1.pdf', download: 'report1.pdf', reviewGiven: false },
+    { id: 2, doctorName: 'Dr. Jane Smith', doctorSpeciality: 'Dermatologist', report: 'report2.pdf', download: 'report2.pdf', reviewGiven: false },
+    { id: 3, doctorName: 'Dr. Mike Johnson', doctorSpeciality: 'Pediatrician', report: 'report3.pdf', download: 'report3.pdf', reviewGiven: false }
   ]);
 
   const [showReport, setShowReport] = useState(false);
@@ -35,18 +35,39 @@ const ReportsLayout = () => {
   };
 
   return (
-    <div className="report">
+    <div className="reports-layout">
       <h1>Your Reports</h1>
-      {reports.map(report => (
-        <div key={report.id}>
-          <h2>{report.doctorName} - {report.doctorSpeciality}</h2>
-          <button onClick={() => openReport(report.id)}>View Report</button>
-        </div>
-      ))}
+      <table className="reports-table">
+        <thead>
+          <tr>
+            <th>Serial Number</th>
+            <th>Doctor Name</th>
+            <th>Doctor Specialty</th>
+            <th>View Report</th>
+            <th>Download Report</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reports.map((report, index) => (
+            <tr key={report.id}>
+              <td>{index + 1}</td>
+              <td>{report.doctorName}</td>
+              <td>{report.doctorSpeciality}</td>
+              <td>
+                <button onClick={() => openReport(report.id)}>View Report</button>
+              </td>
+              <td>
+                <a href={report.download} download>
+                  <button>Download</button>
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       {showReport && selectedDoctor && (
         <div className="report-popup">
-          {/* Replace with your actual Report component */}
           <div>
             <h2>{selectedDoctor.doctorName}</h2>
             {/* Render report details here */}
